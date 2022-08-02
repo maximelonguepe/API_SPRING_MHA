@@ -1,15 +1,21 @@
 package com.controller;
 
+import com.Dao.AgenciesDao;
+import com.entities.HeroesEntity;
 import com.metier.Hero;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController()
 public class HeroController {
 
     @GetMapping("heroes")
-    public Hero getHeroes(){
-        return new Hero("Midoriya","Izuku","Deku");
+    public List<HeroesEntity> getHeroes(){
+        List<HeroesEntity> heroesEntities=new ArrayList<>();
+        return heroesEntities;
 
     }
 }
