@@ -14,8 +14,7 @@ public class HeroController {
 
     @GetMapping("heroes")
     public List<HeroesEntity> getHeroes(){
-        List<HeroesEntity> heroesEntities=new ArrayList<>();
-        return heroesEntities;
+        return new ArrayList<>();
 
     }
 }
