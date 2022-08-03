@@ -10,7 +10,7 @@ public class AgenciesDao extends HibernateInteractions<AgenciesEntity> {
         return findAll(AgenciesEntity.class);
     }
     public AgenciesEntity getById(Integer id) {
-        return find(id, AgenciesEntity.class);
+        return (AgenciesEntity) find(id, AgenciesEntity.class);
     }
     public AgenciesEntity getByName(String name) {
         Session session = getSession();
