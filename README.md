@@ -6,12 +6,10 @@ Concerning the theme of the API I chose to make it on My Hero Academia because I
 If you want more information about this series you can visit the following website: https://en.wikipedia.org/wiki/My_Hero_Academia
 <br>
 
-En bref résumé : la quasi totalité de la population de la planète se met à développer des pouvoirs surhumains aussi appelés Quirks.
-Dans cette société il y a une recrudescence de vilains. Pour compenser cela des héros professionnels défendent la population contre ces criminels.
-C'est donc une lutte quasi permanente et les jeunes prometteurs peuvent rentrer dans des écoles spécialisés pour améliorer leurs quirks et ainsi devenir des héros professionnels
-<br>
-Cette api permet d'exposer les héros, d'avoir leurs classement mais aussi avoir plus d'informations sur les vilains et leurs quirks.
-Elle permet aussi d'exposer les étudiant super héros et leurs école.
-<br>
+In a nutshell: almost the entire population of the planet starts to develop superhuman powers, also called Quirks. In this society there is an upsurge of villains. To compensate for this, professional heroes defend the population against these criminals. It is therefore a permanent struggle and promising young people can enter special schools to improve their quirks and thus become professional heroes.
+This api allows to expose the heroes, to have their rankings but also to have more information on the villains and their quirks. It also allows to expose the student superheroes and their school.
 
-C'est une API relativement simple mais elle permet ainsi d'avoir une vision globale de projet.
+It is a relatively simple API but it allows to have a global vision of the project. This project also allowed me to practice unit testing.
+
+
+
