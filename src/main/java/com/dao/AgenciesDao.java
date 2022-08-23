@@ -1,4 +1,4 @@
-package com.Dao;
+package com.dao;
 
 import com.entities.AgenciesEntity;
 import org.hibernate.Session;

@@ -13,14 +13,13 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "agencies", schema = "mha", catalog = "")
+@Table(name = "agencies", schema = "mha")
 public class AgenciesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "AgencyName", nullable = true, length = 45)
     private String agencyName;
 
     public AgenciesEntity(String agencyName) {

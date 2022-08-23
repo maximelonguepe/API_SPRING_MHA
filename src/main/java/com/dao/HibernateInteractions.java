@@ -1,4 +1,4 @@
-package com.Dao;
+package com.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
