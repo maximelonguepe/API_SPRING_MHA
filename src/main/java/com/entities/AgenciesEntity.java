@@ -20,6 +20,7 @@ public class AgenciesEntity {
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
+    @Column(name = "agency_name", nullable = false)
     private String agencyName;
 
     public AgenciesEntity(String agencyName) {

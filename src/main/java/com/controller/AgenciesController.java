@@ -30,7 +30,7 @@ public class AgenciesController {
     ResponseEntity<AgenciesEntity> getPersonsByName(@PathParam("id") Integer id, @PathParam("name") String name) {
         AgenciesDao agenciesDao = new AgenciesDao();
         if (id != null) {
-            AgenciesEntity agenciesEntity = agenciesDao.getById(id);
+            AgenciesEntity agenciesEntity = agenciesServices.getById(id);
             if(agenciesEntity !=null){
                 return new ResponseEntity<>(agenciesEntity, HttpStatus.OK);
 
@@ -40,7 +40,7 @@ public class AgenciesController {
 
             }
         } else if (name != null) {
-            AgenciesEntity agenciesEntity = agenciesDao.getByName(name);
+            AgenciesEntity agenciesEntity = agenciesServices.getByName(name);
             if(agenciesEntity !=null){
                 return new ResponseEntity<>(agenciesEntity, HttpStatus.OK);
 

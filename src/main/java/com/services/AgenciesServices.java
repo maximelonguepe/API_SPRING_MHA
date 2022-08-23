@@ -16,8 +16,22 @@ public class AgenciesServices {
 
     @Autowired
     EntityManager entityManager;
-    public List<AgenciesEntity> findAll(){
+
+
+    public List<AgenciesEntity> findAll() {
         return agenciesRepository.findAll();
     }
+
+    public AgenciesEntity getByName(String agencyName) {
+        return agenciesRepository.findByAgencyName(agencyName);
+    }
+
+    public AgenciesEntity getById(Integer id) {
+        if (agenciesRepository.findById(id).isPresent()) {
+            return agenciesRepository.findById(id).get();
+        }
+        else return null;
+    }
+
 
 }
