@@ -5,7 +5,9 @@ import com.entities.AgenciesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -33,5 +35,17 @@ public class AgenciesServices {
         else return null;
     }
 
+    public void deleteById(Integer id){
+        agenciesRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteByName(String name){
+        agenciesRepository.deleteByAgencyName(name);
+    }
+
+    public AgenciesEntity save(AgenciesEntity agenciesEntity){
+        return agenciesRepository.save(agenciesEntity);
+    }
 
 }
