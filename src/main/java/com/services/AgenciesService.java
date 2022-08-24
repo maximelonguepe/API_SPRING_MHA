@@ -3,16 +3,14 @@ package com.services;
 import com.repository.AgenciesRepository;
 import com.entities.AgenciesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
-public class AgenciesServices {
+public class AgenciesService {
     @Autowired
     AgenciesRepository agenciesRepository;
 
@@ -47,5 +45,6 @@ public class AgenciesServices {
     public AgenciesEntity save(AgenciesEntity agenciesEntity){
         return agenciesRepository.save(agenciesEntity);
     }
+
 
 }
