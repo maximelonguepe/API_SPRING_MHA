@@ -17,7 +17,27 @@ public class AgenciesController {
     @Autowired
     AgenciesService agenciesService;
 
+    ///////////CREATE//////////
+    /**
+     * This path will allow to save or partially update an agency
+     * @param agenciesEntity the agency that we want to save or partial update
+     * @return the agency created or updated
+     */
+    @PostMapping(path = "")
+    ResponseEntity<AgenciesEntity> save(@RequestBody AgenciesEntity agenciesEntity){
+        AgenciesEntity agencies;
+        try {
+            agencies=agenciesService.save(agenciesEntity);
 
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        return new ResponseEntity<>(agencies,HttpStatus.OK);
+    }
+
+    ///////////READ//////////
     @GetMapping()
     public List<AgenciesEntity> getAgencies() {
         return agenciesService.findAll();
@@ -47,6 +67,7 @@ public class AgenciesController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    ///////////DELETE//////////
     @DeleteMapping(path = "")
     ResponseEntity<String> deleteAgencyByIdOrName(@PathParam("id") Integer id, @PathParam("name") String name) {
         if (id != null) {
@@ -62,20 +83,6 @@ public class AgenciesController {
 
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    @PostMapping(path = "")
-    ResponseEntity<AgenciesEntity> save(@RequestBody AgenciesEntity agenciesEntity){
-        AgenciesEntity agencies;
-        try {
-            agencies=agenciesService.save(agenciesEntity);
-
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-
-       return new ResponseEntity<>(agencies,HttpStatus.OK);
     }
 
 
