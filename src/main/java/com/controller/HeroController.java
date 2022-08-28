@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.entities.AgenciesEntity;
 import com.entities.HeroesEntity;
 import com.metier.Hero;
 import com.services.HeroesService;
@@ -57,5 +58,17 @@ public class HeroController {
         return new ResponseEntity<>("The deletion has been made", HttpStatus.OK);
     }
 
+
+    @PostMapping(path = "")
+    ResponseEntity<HeroesEntity> save(@RequestBody HeroesEntity heroEntity) {
+        HeroesEntity hero;
+        try {
+            hero= heroesService.save(heroEntity);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(hero,HttpStatus.OK);
+    }
 
 }

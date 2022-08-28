@@ -33,4 +33,6 @@ public class HeroesService {
     }
 
     public void delete(HeroesEntity heroEntity){heroesRepository.delete(heroEntity);}
+
+    public HeroesEntity save(HeroesEntity heroesEntity){return heroesRepository.save(heroesEntity);}
 }
