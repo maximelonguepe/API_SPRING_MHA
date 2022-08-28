@@ -1,13 +1,12 @@
 package com.controller;
 
 import com.entities.HeroesEntity;
+import com.metier.Hero;
 import com.services.HeroesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class HeroController {
     }
 
     @GetMapping("get")
-    public ResponseEntity<HeroesEntity> getHeroByIdOrName(@PathParam("id") Integer id, @PathParam("name") String name){
+    public ResponseEntity<HeroesEntity> getHeroByIdOrName(@PathParam("id") Integer id, @PathParam("name") String name) {
         if (id != null) {
             HeroesEntity hero = heroesService.getById(id);
             if (hero != null) {
@@ -48,6 +47,15 @@ public class HeroController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @DeleteMapping("")
+    ResponseEntity<String> delete(@RequestBody HeroesEntity heroesEntity) {
+        try {
+            heroesService.delete(heroesEntity);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Impossible to delete the agency, heroes are still associated with it", HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>("The deletion has been made", HttpStatus.OK);
+    }
 
 
 }

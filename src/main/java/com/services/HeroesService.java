@@ -31,4 +31,6 @@ public class HeroesService {
     public HeroesEntity getByName(String name){
         return heroesRepository.findByHeroName(name);
     }
+
+    public void delete(HeroesEntity heroEntity){heroesRepository.delete(heroEntity);}
 }
