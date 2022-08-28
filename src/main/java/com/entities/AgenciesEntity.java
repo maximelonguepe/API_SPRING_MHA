@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,7 +23,6 @@ public class AgenciesEntity {
     @Basic
     @Column(name = "agency_name", nullable = false)
     private String agencyName;
-
     public AgenciesEntity(String agencyName) {
         this.agencyName = agencyName;
     }

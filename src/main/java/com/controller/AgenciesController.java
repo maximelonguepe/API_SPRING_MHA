@@ -18,23 +18,24 @@ public class AgenciesController {
     AgenciesService agenciesService;
 
     ///////////CREATE//////////
+
     /**
      * This path will allow to save or partially update an agency
+     *
      * @param agenciesEntity the agency that we want to save or partial update
      * @return the agency created or updated
      */
     @PostMapping(path = "")
-    ResponseEntity<AgenciesEntity> save(@RequestBody AgenciesEntity agenciesEntity){
+    ResponseEntity<AgenciesEntity> save(@RequestBody AgenciesEntity agenciesEntity) {
         AgenciesEntity agencies;
         try {
-            agencies=agenciesService.save(agenciesEntity);
+            agencies = agenciesService.save(agenciesEntity);
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        return new ResponseEntity<>(agencies,HttpStatus.OK);
+        return new ResponseEntity<>(agencies, HttpStatus.OK);
     }
 
     ///////////READ//////////
@@ -69,22 +70,15 @@ public class AgenciesController {
 
     ///////////DELETE//////////
     @DeleteMapping(path = "")
-    ResponseEntity<String> deleteAgencyByIdOrName(@PathParam("id") Integer id, @PathParam("name") String name) {
-        if (id != null) {
-            agenciesService.deleteById(id);
+    ResponseEntity<String> delete(@RequestBody AgenciesEntity agenciesEntity) {
+        try {
+            agenciesService.delete(agenciesEntity);
 
-            return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
-
-
-        } else if (name != null) {
-            agenciesService.deleteByName(name);
-            return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
-
-
+        } catch (Exception e) {
+            return new ResponseEntity<>("Impossible to delete the agency, heroes are still associated with it", HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("The deletion has been made", HttpStatus.OK);
     }
-
 
 
 }

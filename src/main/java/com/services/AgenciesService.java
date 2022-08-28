@@ -46,4 +46,6 @@ public class AgenciesService {
         return agenciesRepository.save(agenciesEntity);
     }
 
+    @Transactional
+    public void delete(AgenciesEntity agency){agenciesRepository.delete(agency);}
 }
