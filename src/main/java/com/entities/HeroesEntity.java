@@ -1,14 +1,18 @@
 package com.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "heroes", schema = "mha")
-public class HeroesEntity {
+public class HeroesEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -26,61 +30,21 @@ public class HeroesEntity {
     @Column(name = "hero_quirk", nullable = true, length = 45)
     private String heroQuirk;
 
+    @ManyToOne
+    @JoinColumn(name = "id_agency", referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties("heroes")
+    private AgenciesEntity agency;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HeroesEntity heroes = (HeroesEntity) o;
-        return id == heroes.id && Objects.equals(heroName, heroes.heroName) && Objects.equals(heroDescription, heroes.heroDescription) && Objects.equals(heroRanking, heroes.heroRanking) && Objects.equals(heroQuirk, heroes.heroQuirk);
+        return id == heroes.id && Objects.equals(heroName, heroes.heroName) && Objects.equals(heroDescription, heroes.heroDescription) && Objects.equals(heroRanking, heroes.heroRanking) && Objects.equals(heroQuirk, heroes.heroQuirk) && Objects.equals(agency, heroes.agency);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, heroName, heroDescription, heroRanking, heroQuirk);
+        return Objects.hash(id, heroName, heroDescription, heroRanking, heroQuirk, agency);
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getHeroName() {
-        return heroName;
-    }
-
-    public void setHeroName(String heroName) {
-        this.heroName = heroName;
-    }
-
-    public String getHeroDescription() {
-        return heroDescription;
-    }
-
-    public void setHeroDescription(String heroDescription) {
-        this.heroDescription = heroDescription;
-    }
-
-    public Integer getHeroRanking() {
-        return heroRanking;
-    }
-
-    public void setHeroRanking(Integer heroRanking) {
-        this.heroRanking = heroRanking;
-    }
-
-    public String getHeroQuirk() {
-        return heroQuirk;
-    }
-
-    public void setHeroQuirk(String heroQuirk) {
-        this.heroQuirk = heroQuirk;
-    }
-
-
-
-
 }
