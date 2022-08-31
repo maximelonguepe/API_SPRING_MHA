@@ -6,11 +6,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 
 public interface AgenciesRepository extends JpaRepository<AgenciesEntity,Integer> {
     @Query("select a from AgenciesEntity a where a.agencyName = :agencyName")
     AgenciesEntity findByAgencyName(@Param("agencyName") String agencyName);
 
+    @Query("select a from AgenciesEntity a where a.agencyName like %:agencyName%")
+    List<AgenciesEntity> searchByName(@Param("agencyName")String agencyName);
     @Modifying
     @Query("delete from AgenciesEntity a where a.agencyName = :agencyName")
     void deleteByAgencyName(@Param("agencyName") String agencyName);

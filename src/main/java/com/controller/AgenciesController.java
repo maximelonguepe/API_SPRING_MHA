@@ -68,6 +68,11 @@ public class AgenciesController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("find")
+    public List<AgenciesEntity> findByName(@PathParam("name") String agencyName){
+        return agenciesService.searchByName(agencyName);
+    }
+
     ///////////DELETE//////////
     @DeleteMapping(path = "")
     ResponseEntity<String> delete(@RequestBody AgenciesEntity agenciesEntity) {

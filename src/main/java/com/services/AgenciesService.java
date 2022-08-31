@@ -33,14 +33,9 @@ public class AgenciesService {
         else return null;
     }
 
-    public void deleteById(Integer id){
-        agenciesRepository.deleteById(id);
-    }
-
-    @Transactional
-    public void deleteByName(String name){
-        agenciesRepository.deleteByAgencyName(name);
-    }
+    public List<AgenciesEntity> searchByName(String agencyName){
+        return agenciesRepository.searchByName(agencyName);
+    };
 
     public AgenciesEntity save(AgenciesEntity agenciesEntity){
         return agenciesRepository.save(agenciesEntity);

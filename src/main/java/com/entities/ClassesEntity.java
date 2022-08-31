@@ -1,5 +1,6 @@
 package com.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,19 +19,22 @@ public class ClassesEntity {
     @Basic
     @Column(name = "class_name", nullable = true, length = 5)
     private String className;
-    @Basic
-    @Column(name = "id_school", nullable = false)
-    private int idSchool;
+
+    @ManyToOne
+    @JoinColumn(name = "id_school", referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties("classes")
+    private SchoolEntity school;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClassesEntity that = (ClassesEntity) o;
-        return id == that.id && idSchool == that.idSchool && Objects.equals(className, that.className);
+        return id == that.id && Objects.equals(className, that.className) && Objects.equals(school, that.school);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, className, idSchool);
+        return Objects.hash(id, className, school);
     }
 }
