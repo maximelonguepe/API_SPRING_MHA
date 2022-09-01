@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AgenciesService {
@@ -22,15 +23,13 @@ public class AgenciesService {
         return agenciesRepository.findAll();
     }
 
-    public AgenciesEntity getByName(String agencyName) {
+    public AgenciesEntity findByName(String agencyName) {
         return agenciesRepository.findByAgencyName(agencyName);
     }
 
-    public AgenciesEntity getById(Integer id) {
-        if (agenciesRepository.findById(id).isPresent()) {
-            return agenciesRepository.findById(id).get();
-        }
-        else return null;
+    public AgenciesEntity findById(Integer id) {
+        Optional<AgenciesEntity> agenciesEntity=agenciesRepository.findById(id);
+        return agenciesEntity.orElse(null);
     }
 
     public List<AgenciesEntity> searchByName(String agencyName){

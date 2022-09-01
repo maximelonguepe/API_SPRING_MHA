@@ -47,7 +47,7 @@ public class AgenciesController {
     @GetMapping(path = "get")
     ResponseEntity<AgenciesEntity> getAgencyByIdOrName(@PathParam("id") Integer id, @PathParam("name") String name) {
         if (id != null) {
-            AgenciesEntity agenciesEntity = agenciesService.getById(id);
+            AgenciesEntity agenciesEntity = agenciesService.findById(id);
             if (agenciesEntity != null) {
                 return new ResponseEntity<>(agenciesEntity, HttpStatus.OK);
 
@@ -56,7 +56,7 @@ public class AgenciesController {
 
             }
         } else if (name != null) {
-            AgenciesEntity agenciesEntity = agenciesService.getByName(name);
+            AgenciesEntity agenciesEntity = agenciesService.findByName(name);
             if (agenciesEntity != null) {
                 return new ResponseEntity<>(agenciesEntity, HttpStatus.OK);
 

@@ -19,6 +19,20 @@ public class HeroController {
     @Autowired
     HeroesService heroesService;
 
+    ///////////CREATE//////////
+    @PostMapping(path = "")
+    ResponseEntity<HeroesEntity> saveOrUpdate(@RequestBody HeroesEntity heroEntity) {
+        HeroesEntity hero;
+        try {
+            hero= heroesService.save(heroEntity);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(hero,HttpStatus.OK);
+    }
+
+    ///////////READ//////////
     @GetMapping("")
     public List<HeroesEntity> getHeroes() {
         return heroesService.findAll();
@@ -48,6 +62,13 @@ public class HeroController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+
+    @GetMapping("find")
+    public List<HeroesEntity> findByHeroName(@PathParam("name") String name){
+        return heroesService.findByName(name);
+    }
+
+    ///////////DELETE//////////
     @DeleteMapping("")
     ResponseEntity<String> delete(@RequestBody HeroesEntity heroesEntity) {
         try {
@@ -59,16 +80,6 @@ public class HeroController {
     }
 
 
-    @PostMapping(path = "")
-    ResponseEntity<HeroesEntity> save(@RequestBody HeroesEntity heroEntity) {
-        HeroesEntity hero;
-        try {
-            hero= heroesService.save(heroEntity);
 
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-        return new ResponseEntity<>(hero,HttpStatus.OK);
-    }
 
 }
